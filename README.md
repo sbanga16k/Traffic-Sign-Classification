@@ -8,6 +8,17 @@ The steps of this project are the following:
 3. Use the model to make predictions on new images
 4. Analyze the softmax probabilities of the new images
 
+[//]: # (Image References)
+
+[image1]: ./Result_images/Img_Train_Test_class_distribution.jpg "Data labels ditribution plot"
+[image2]: ./Result_images/Img_Preprocessing.jpg "Original vs Preprocessed image"
+[image3]: ./Result_images/Img_Geom_transform.jpg "Original vs Geometric transformed images"
+[image4]: ./Result_images/Img_Flipping.jpg "Original vs flipped images"
+[image5]: ./Result_images/Img_Train_original_augmented_distribution.jpg "Augmented data labels ditribution plot"
+[image6]: ./Result_images/Img_custom.jpg "Custom new images taken from the web"
+[image7]: ./Result_images/Img_Predictions.jpg "Prediction labels for new custom images"
+[image8]: ./Result_images/Img_Test_failure_sample.jpg "Visualization of misclassified images"
+
 ## Data Set Summary & Exploration
 
 The summary statistics of the traffic signs data sets:
@@ -20,7 +31,7 @@ The number of unique classes/labels in the data set is: 43
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is non-uniform in distribution across labels. 
 
-![alt text](Img_Train_Test_class_distribution.jpg)
+![alt text][image1]
 
 It is evident that many classes are highly under-represented in the data evidenced by their low frequency of occurence of the order of 200 examples which is insufficient to train the model to learn to classify all labels.
 
@@ -32,7 +43,7 @@ The images were also normalized to have zero-centered data which has been common
 
 Here is an example of a traffic sign image before and after applying different preprocessing methods:
 
-![alt text](Img_Preprocessing.jpg)
+![alt text][image2]
 
 Some of the classes were highly under-represented in the data, with as few as 180 examples, warranting the need to augment the existing dataset by generate additional data. The additional data generated was twice the size of the original training data, and the augmentation was done in a manner to have the augmented dataset with label distribution similar to that of the original training data. 
 
@@ -40,15 +51,15 @@ To generate more data, I used some transformation techniques to make the model m
 
 Here is an example of an original image and augmented image using geometric transformations:
 
-![alt text](Img_Geom_transform.jpg)
+![alt text][image3]
 
 Here are a few examples of original images and their augmented(flipped) image:
 
-![alt text](Img_Flipping.jpg)
+![alt text][image4]
 
 Finally, the objective of keeping the relative distribution of lables unchanged is verified by plotting it against the label distriution in the original training data, as shown below:
 
-![alt text](Img_Train_original_augmented_distribution.jpg)
+![alt text][image5]
 
 The final model draws inspiration from the VGG-16 architecture: <br />
 i.   It uses standard 3x3 Convolutions with ReLU activation. <br />
@@ -107,7 +118,7 @@ Dropout- Prob_keep: 0.5 (Fully Connected - Stage 4), 0.75 (Convolution - Stages 
 
 Here are 11 German traffic signs that I found on the web:
 
-![alt text](Img_custom.jpg)
+![alt text][image6]
 
 These image might be difficult to classify because:
 i.   Some of the signs look different (shape, color, orientation) from other instances of the same sign in the training data
@@ -116,12 +127,12 @@ iii. Some signs are warped/ have poor contrast/ have very high/low brightness
 
 Here are the results of the prediction:
 
-![alt text](Img_Predictions.jpg)
+![alt text][image7]
 
 The model was able to correctly guess all 11 traffic signs, which gives an accuracy of 100%. This compares favorably to the accuracy on the test set of 98.5 %. For all these images, the model is surprisingly absolutely sure of its prediction. The bar plots for each of the images can be found in the notebook!
 
 Having a closer look at some of the images in the test set that our model was not able to classify correctly:
 
-![alt text](Img_Test_failure_sample.jpg)
+![alt text][image8]
 
 We can see that the model failed on images which were very blurry, had low contrast and/or brightness or had some kind of obstruction like a shadow or some other obstacle. So, it is not unexpected that network was able to accurately classify the images that I found on the internet.
