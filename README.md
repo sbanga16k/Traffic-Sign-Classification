@@ -10,7 +10,7 @@ The steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./Result_images/Img_Train_Test_class_distribution.jpg "Data labels ditribution plot"
+[image1]: ./Img_Train_Test_class_distribution.jpg "Data labels ditribution plot"
 [image2]: ./Result_images/Img_Preprocessing.jpg "Original vs Preprocessed image"
 [image3]: ./Result_images/Img_Geom_transform.jpg "Original vs Geometric transformed images"
 [image4]: ./Result_images/Img_Flipping.jpg "Original vs flipped images"
