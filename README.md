@@ -61,39 +61,23 @@ The network in not a simple feed-forward CNN. It uses multi-scale features (as s
 
 ### Pipeline for the model
 
-Input	             32x32x1 - Preprocessed (Grayscale normalized) image
+Input:  32x32x1 - Preprocessed (Grayscale normalized) image
 
 #### Pipeline for Convolutional layers
 
-Stage 1:
-3x3 Convolution      Output: 32x32x32 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+For convolution stages 1 to 3, number of output channels for convolutions (Stage_channel) are doubled after every stage but kept constant throughout a stage. 
+__*Stage 1: Stage_channel = 32; Stage 2: Stage_channel = 64; Stage 3: Stage_channel = 128*__
 
-3x3 Convolution      Output: 32x32x32 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
-
-2x2 MaxPool          Output: 16x16x32 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool1
-
-Stage 2:
-3x3 Convolution      Output: 16x16x64 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
-
-3x3 Convolution      Output: 16x16x64 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
-
-2x2 MaxPool          Output:   8x8x64 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool2
-
-Stage 3:
-3x3 Convolution      Output:  8x8x128 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
-
-3x3 Convolution      Output:  8x8x128 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
-
-2x2 MaxPool          Output:  4x4x128 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool3
+**Stage 1 to 3:**
+3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  +
+3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  +
+2x2 MaxPool +  Dropout(prob_keep = 0.75)    --> Pool 1/2/3
 
 #### Pipeline for Multi-scale features from the 3 convolutional layers' output
 
 Pool1 + 4x4 MaxPool + Flatten      Output:  4 * 4 * 32 (4x4 stride, 'SAME' padding)  --> Out1
-
 Pool2 + 2x2 MaxPool + Flatten      Output:  4 * 4 * 64 (2x2 stride, 'SAME' padding)  --> Out2
-
 Pool3 + Flatten                    Output:  4 * 4 * 128                              --> Out3
-
 Concatenate(out1,out2,out3)        Output:  4 * 4 * 224                              --> fc0
 
 #### Pipeline for fully connected layer and generating output of the network
@@ -105,13 +89,11 @@ Fully Connected                                  (Input: 1024, Output: 43)      
 
 To train the final model, I used the following hyperparameter configuration-
 
-Optimizer: Adam optimizer
-Learning rate: 0.0007
-Batch size: 128 
-Epochs: 100
+Optimizer: Adam with initial Learning rate: 7e-4
+Batch size: 128, Epochs: 100
 Dropout- Prob_keep: 0.5 (Fully Connected - Stage 4), 0.75 (Convolution - Stages 1,2,3)
 
-**My final model results were:**
+**My final results were:**
 
 **Training set accuracy of 99.5 %**
 
