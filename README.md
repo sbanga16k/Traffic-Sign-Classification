@@ -28,7 +28,7 @@ It is evident that many classes are highly under-represented in the data evidenc
 
 As a first step, I converted the images to grayscale because it simplifies the algorithm and reduces computational requirements. Also, the limited benefit that using color may offer is outweighed by the likelihood of introducing unnecessary information could increase the amount of training data required to achieve good performance.
 
-The images were also normalized to have zero-centered data which has been commonly observed to result in faster convergence during optimization.
+The images were also normalized to have zero-centered data which has been commonly observed to result in faster convergence during optimization. 
 
 Here is an example of a traffic sign image before and after applying different preprocessing methods:
 
@@ -65,43 +65,40 @@ Input:  32x32x1 - Preprocessed (Grayscale normalized) image
 
 #### Pipeline for Convolutional layers
 
-For convolution stages 1 to 3, number of output channels for convolutions (Stage_channel) are doubled after every stage but kept constant throughout a stage. 
+For convolution stages 1 to 3, number of output channels for convolutions (Stage_channel) are doubled after every stage but kept constant throughout a stage. <br />
 __*Stage 1: Stage_channel = 32; Stage 2: Stage_channel = 64; Stage 3: Stage_channel = 128*__
 
 **Stage 1 to 3:**
-3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  +
-3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  +
+3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  + <br />
+3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  + <br />
 2x2 MaxPool +  Dropout(prob_keep = 0.75)    --> Pool 1/2/3
 
 #### Pipeline for Multi-scale features from the 3 convolutional layers' output
 
-Pool1 + 4x4 MaxPool + Flatten      Output:  4 * 4 * 32 (4x4 stride, 'SAME' padding)  --> Out1
-Pool2 + 2x2 MaxPool + Flatten      Output:  4 * 4 * 64 (2x2 stride, 'SAME' padding)  --> Out2
-Pool3 + Flatten                    Output:  4 * 4 * 128                              --> Out3
+Pool1 + 4x4 MaxPool + Flatten      Output:  4 * 4 * 32 (4x4 stride, 'SAME' padding)  --> Out1 <br />
+Pool2 + 2x2 MaxPool + Flatten      Output:  4 * 4 * 64 (2x2 stride, 'SAME' padding)  --> Out2 <br />
+Pool3 + Flatten                    Output:  4 * 4 * 128                              --> Out3 <br />
 Concatenate(out1,out2,out3)        Output:  4 * 4 * 224                              --> fc0
 
 #### Pipeline for fully connected layer and generating output of the network
-Stage 4:
+Stage 4: <br />
 Fully Connected + ReLU Activation + Dropout(0.5) (Input: 4 * 4 * 224, Output: 1024)       --> fc1
 
-Stage 5:
+Stage 5: <br />
 Fully Connected                                  (Input: 1024, Output: 43)                --> logits (Network Output)
 
 To train the final model, I used the following hyperparameter configuration-
 
-Optimizer: Adam with initial Learning rate: 7e-4
-Batch size: 128, Epochs: 100
+Optimizer: Adam with initial Learning rate: 7e-4 <br />
+Batch size: 128, Epochs: 100 <br />
 Dropout- Prob_keep: 0.5 (Fully Connected - Stage 4), 0.75 (Convolution - Stages 1,2,3)
 
-**My final results were:**
+**My final results were:** <br />
+**Training set accuracy of 99.5 %** <br />
+**Validation set accuracy of 99.6 %** <br />
+**Test set accuracy of 98.5 %** <br />
 
-**Training set accuracy of 99.5 %**
-
-**Validation set accuracy of 99.6 %**
-
-**Test set accuracy of 98.5 %**
-
-The approach to obtaining a network with a validation set accuracy of 93 % was fairly easy. The real challenge was getting it over 99 %. This was an iterative process and a lot of time was spent on tweaking the architecture and data augmentation, along with some hyperparameter tuning. 
+The approach to obtaining a network with a validation set accuracy of 93 % was fairly easy. The real challenge was getting it over 99 %. This was an iterative process and a lot of time was spent on tweaking the architecture and data augmentation, along with some hyperparameter tuning. <br />
 The corresponding test accuracy was 98.5 % which __*exceeds human accuracy on this dataset (98.32 %) !!!!*__
 
 ## Test a Model on New Images
