@@ -59,6 +59,14 @@ v.   Dropout has been used to further induce regularization. Typically, it is us
 
 The network in not a simple feed-forward CNN. It uses multi-scale features (as suggested in the "Traffic Sign Recognition with Multi-Scale Convolutional Networks" by Pierre Sermanet and Yann LeCun) by combining the output of each of the convolution stages (described below) and feeds it to the fully connected layer after appropriate processing (down-sampling) to the same size as output from the final convolutional stage. 
 
+**My final results were:** <br />
+**Training set accuracy of 99.5 %** <br />
+**Validation set accuracy of 99.6 %** <br />
+**Test set accuracy of 98.5 %** <br />
+
+The approach to obtaining a network with a validation set accuracy of 93 % was fairly easy. The real challenge was getting it over 99 %. This was an iterative process and a lot of time was spent on tweaking the architecture and data augmentation, along with some hyperparameter tuning. The final model is described below. <br />
+The corresponding test accuracy was 98.5 % which __*exceeds human accuracy on this dataset (98.32 %) !!!!*__
+
 ### Pipeline for the model
 
 Input:  32x32x1 - Preprocessed (Grayscale normalized) image
@@ -94,14 +102,6 @@ To train the final model, I used the following hyperparameter configuration-
 Optimizer: Adam with initial Learning rate: 7e-4 <br />
 Batch size: 128, Epochs: 100 <br />
 Dropout- Prob_keep: 0.5 (Fully Connected - Stage 4), 0.75 (Convolution - Stages 1,2,3)
-
-**My final results were:** <br />
-**Training set accuracy of 99.5 %** <br />
-**Validation set accuracy of 99.6 %** <br />
-**Test set accuracy of 98.5 %** <br />
-
-The approach to obtaining a network with a validation set accuracy of 93 % was fairly easy. The real challenge was getting it over 99 %. This was an iterative process and a lot of time was spent on tweaking the architecture and data augmentation, along with some hyperparameter tuning. <br />
-The corresponding test accuracy was 98.5 % which __*exceeds human accuracy on this dataset (98.32 %) !!!!*__
 
 ## Test a Model on New Images
 
