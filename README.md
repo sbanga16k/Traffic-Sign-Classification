@@ -31,7 +31,7 @@ The number of unique classes/labels in the data set is: 43
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is non-uniform in distribution across labels. 
 
-![alt text][image1]
+![Data labels ditribution plot](./Img_Train_Test_class_distribution.jpg)
 
 It is evident that many classes are highly under-represented in the data evidenced by their low frequency of occurence of the order of 200 examples which is insufficient to train the model to learn to classify all labels.
 
