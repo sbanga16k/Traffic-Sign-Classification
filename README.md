@@ -50,11 +50,11 @@ Finally, the objective of keeping the relative distribution of lables unchanged 
 
 ![alt text](Img_Train_original_augmented_distribution.jpg)
 
-The final model draws inspiration from the VGG-16 architecture: 
-i.   It uses standard 3x3 Convolutions with ReLU activation. 
-ii.  In every convolution stage, 2 convolution operations interleaved with ReLU activations are stacked together and then maxpooled. Stacking of 3x3 convolution operations enables us to obtain a larger receptive field of the image. 
-iii. This configuration has fewer parameters than a 5x5 convolution while resulting in the same size of receptive field of the image. Also, it makes the network capable of modelling more non-linear boundaries.
-iv.  MaxPooling helps with regularization and reducing computational complexity due to reduced parameter requirement in subsequent layers. 
+The final model draws inspiration from the VGG-16 architecture: <br />
+i.   It uses standard 3x3 Convolutions with ReLU activation. <br />
+ii.  In every convolution stage, 2 convolution operations interleaved with ReLU activations are stacked together and then maxpooled. Stacking of 3x3 convolution operations enables us to obtain a larger receptive field of the image. <br />
+iii. This configuration has fewer parameters than a 5x5 convolution while resulting in the same size of receptive field of the image. Also, it makes the network capable of modelling more non-linear boundaries. <br />
+iv.  MaxPooling helps with regularization and reducing computational complexity due to reduced parameter requirement in subsequent layers. <br />
 v.   Dropout has been used to further induce regularization. Typically, it is used for the Fully Connected layers but it helped the network learn better when it was used after each convolution stage too, albeit using a higher probability of keeping a node for the conolutional stages.
 
 The network in not a simple feed-forward CNN. It uses multi-scale features (as suggested in the "Traffic Sign Recognition with Multi-Scale Convolutional Networks" by Pierre Sermanet and Yann LeCun) by combining the output of each of the convolution stages (described below) and feeds it to the fully connected layer after appropriate processing (down-sampling) to the same size as output from the final convolutional stage. 
