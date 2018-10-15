@@ -10,7 +10,7 @@ The steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./Result_images/Img_Train_Test_class_distribution.jpg "Data labels ditribution plot"
+[image1]: Img_Train_Test_class_distribution.jpg "Data labels ditribution plot"
 [image2]: ./Result_images/Img_Preprocessing.jpg "Original vs Preprocessed image"
 [image3]: ./Result_images/Img_Geom_transform.jpg "Original vs Geometric transformed images"
 [image4]: ./Result_images/Img_Flipping.jpg "Original vs flipped images"
@@ -31,7 +31,7 @@ The number of unique classes/labels in the data set is: 43
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data is non-uniform in distribution across labels. 
 
-![alt text][image1]
+![alt text][Img_Train_Test_class_distribution]
 
 It is evident that many classes are highly under-represented in the data evidenced by their low frequency of occurence of the order of 200 examples which is insufficient to train the model to learn to classify all labels.
 
