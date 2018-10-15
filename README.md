@@ -67,23 +67,31 @@ Input	             32x32x1 - Preprocessed (Grayscale normalized) image
 
 Stage 1:
 3x3 Convolution      Output: 32x32x32 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 3x3 Convolution      Output: 32x32x32 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 2x2 MaxPool          Output: 16x16x32 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool1
 
 Stage 2:
 3x3 Convolution      Output: 16x16x64 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 3x3 Convolution      Output: 16x16x64 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 2x2 MaxPool          Output:   8x8x64 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool2
 
 Stage 3:
 3x3 Convolution      Output:  8x8x128 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 3x3 Convolution      Output:  8x8x128 (1x1 stride, 'SAME' padding)  +  ReLU Activation  +
+
 2x2 MaxPool          Output:  4x4x128 (2x2 stride, 'SAME' padding)  +  Dropout(prob_keep = 0.75)    --> Pool3
 
 #### Pipeline for Multi-scale features from the 3 convolutional layers' output
 
 Pool1 + 4x4 MaxPool + Flatten      Output:  4 * 4 * 32 (4x4 stride, 'SAME' padding)  --> Out1
+
 Pool2 + 2x2 MaxPool + Flatten      Output:  4 * 4 * 64 (2x2 stride, 'SAME' padding)  --> Out2
+
 Pool3 + Flatten                    Output:  4 * 4 * 128                              --> Out3
 
 Concatenate(out1,out2,out3)        Output:  4 * 4 * 224                              --> fc0
@@ -104,12 +112,15 @@ Epochs: 100
 Dropout- Prob_keep: 0.5 (Fully Connected - Stage 4), 0.75 (Convolution - Stages 1,2,3)
 
 **My final model results were:**
+
 **Training set accuracy of 99.5 %**
+
 **Validation set accuracy of 99.6 %**
+
 **Test set accuracy of 98.5 %**
 
 The approach to obtaining a network with a validation set accuracy of 93 % was fairly easy. The real challenge was getting it over 99 %. This was an iterative process and a lot of time was spent on tweaking the architecture and data augmentation, along with some hyperparameter tuning. 
-The corresponding test accuracy was 98.5 % which *exceeds human accuracy on this dataset (98.32 %) !!!!*
+The corresponding test accuracy was 98.5 % which __*exceeds human accuracy on this dataset (98.32 %) !!!!*__
 
 ## Test a Model on New Images
 
