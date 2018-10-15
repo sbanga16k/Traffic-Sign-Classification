@@ -43,7 +43,7 @@ The images were also normalized to have zero-centered data which has been common
 
 Here is an example of a traffic sign image before and after applying different preprocessing methods:
 
-![alt text][image2]
+![alt text](./Result_images/Img_Preprocessing.jpg)
 
 Some of the classes were highly under-represented in the data, with as few as 180 examples, warranting the need to augment the existing dataset by generate additional data. The additional data generated was twice the size of the original training data, and the augmentation was done in a manner to have the augmented dataset with label distribution similar to that of the original training data. 
 
