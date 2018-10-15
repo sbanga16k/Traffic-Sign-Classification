@@ -66,9 +66,9 @@ Input:  32x32x1 - Preprocessed (Grayscale normalized) image
 #### Pipeline for Convolutional layers
 
 For convolution stages 1 to 3, number of output channels for convolutions (Stage_channel) are doubled after every stage but kept constant throughout a stage. <br />
-__*Stage 1: Stage_channel = 32; Stage 2: Stage_channel = 64; Stage 3: Stage_channel = 128*__
+*Stage 1: Stage_channel = 32; Stage 2: Stage_channel = 64; Stage 3: Stage_channel = 128*
 
-**Stage 1 to 3:**
+**Stage 1 to 3:** <br />
 3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  + <br />
 3x3 Convolution (Output channels = Stage_channel) +  ReLU Activation  + <br />
 2x2 MaxPool +  Dropout(prob_keep = 0.75)    --> Pool 1/2/3
